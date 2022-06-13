@@ -1,0 +1,44 @@
+.desk {
+    width: 200px;
+    max-height: 300px;
+    height: 300px;
+    min-height: 100px;
+    border-radius: 5px;
+    margin: 15px 10px 15px 0;
+    padding: 0 10px;
+    background-color: $purple;
+    transition: all 2s;
+    position: relative;
+    &_title {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        @include title($white);
+        margin: 10px 0;
+    }
+    &_tasks {
+        // display: flex;
+        // justify-content: flex-start;
+        // align-items: center;
+        // flex-direction: column;
+        position: absolute;
+        &__item {
+            position: absolute;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 200px;
+            top: 0px;
+            height: 30px;
+            margin: 5px 0;
+            border-radius: 5px;
+            background-color: $white;
+            @include text($black);
+            transition: all 1s;
+            & h5 {
+                margin: 0;
+            }
+        }
+    }
+}
