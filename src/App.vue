@@ -63,7 +63,6 @@ export default {
       ],
     };
   },
-  
 };
 </script>
 
@@ -77,5 +76,7 @@ h1 {
   @include title($black);
   font-size: 25px;
   margin: 20px 0;
+  padding: 0 0 10px 0;
+  border-bottom: 2px solid $purple;
 }
 </style>
