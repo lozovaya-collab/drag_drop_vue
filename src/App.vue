@@ -1,12 +1,15 @@
 <template>
   <v-app>
     <h1>DRAG AND DROP POJECT</h1>
-
-    <Desk
-      class="todo-app"
-      v-bind:categories="categories"
-      v-bind:tasks="tasks"
-    />
+    <div class="todo-app">
+      <Desk
+        v-for="category in categories"
+        :key="category.id"
+        v-bind:categoryID="category.id"
+        v-bind:categoryTitle="category.title"
+        v-bind:tasks="tasks"
+      />
+    </div>
   </v-app>
 </template>
 
@@ -45,6 +48,16 @@ export default {
           id: 4,
           title: "Сходить в магазин",
           categoryId: 0,
+        },
+        {
+          id: 5,
+          title: "Купить овощи",
+          categoryId: 0,
+        },
+        {
+          id: 6,
+          title: "Встреча с родителями",
+          categoryId: 2,
         },
       ],
       categories: [

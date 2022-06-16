@@ -1,29 +1,30 @@
 <template>
-  <div class="todo-app">
-    <div
-      v-for="category in categories"
-      :key="category.id"
-      class="desk"
-      @drop="onDrop($event, category.id)"
-      @dragover.prevent
-      @dragenter.prevent
-    >
-      <div class="desk_title">
-        <h4>{{ category.title }}</h4>
-      </div>
-      <div class="desk_tasks">
-        <Task
-          v-for="(task, index) in items.filter(
-            (x) => x.categoryId === category.id
-          )"
-          :key="task.id"
-          :style="{ top: `${index * 40}px` }"
-          @dragstart="onDragStart($event, task)"
-          @dragover="onDragOver(task)"
-          draggable="true"
-          v-bind:task="task"
-        />
-      </div>
+  <div
+    class="desk"
+    @drop="onDrop($event, categoryID)"
+    :style="{
+      height: `${
+        80 + (items.filter((x) => x.categoryId === categoryID).length - 1) * 40
+      }px`,
+    }"
+    @dragover.prevent
+    @dragenter.prevent
+  >
+    <div class="desk_title">
+      <h4>{{ categoryTitle }}</h4>
+    </div>
+    <div class="desk_tasks">
+      <Task
+        v-for="(task, index) in items.filter(
+          (x) => x.categoryId === categoryID
+        )"
+        :key="task.id"
+        :style="{ top: `${index * 40}px` }"
+        @dragstart="onDragStart($event, task)"
+        @dragover="onDragOver(task)"
+        draggable="true"
+        v-bind:task="task"
+      />
     </div>
   </div>
 </template>
@@ -33,7 +34,7 @@ import Task from "../../components/Task/Task";
 
 export default {
   name: "Desk",
-  props: ["categories", "tasks"],
+  props: ["categories", "tasks", "categoryID", "categoryTitle"],
   components: {
     Task,
   },
