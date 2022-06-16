@@ -4,7 +4,7 @@
     @drop="onDrop($event, categoryID)"
     :style="{
       height: `${
-        80 + (items.filter((x) => x.categoryId === categoryID).length - 1) * 40
+        82 + (items.filter((x) => x.categoryId === categoryID).length - 1) * 42
       }px`,
     }"
     @dragover.prevent
