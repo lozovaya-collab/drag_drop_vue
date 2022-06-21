@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <h1>DRAG AND DROP POJECT</h1>
+    <h1>DRAG AND DROP PROJECT</h1>
     <div class="todo-app">
       <Desk
         v-for="category in categories"
