@@ -3,6 +3,17 @@
     padding: 0;
 }
 
+h1 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    @include title($black);
+    font-size: 25px;
+    margin: 20px 0;
+    padding: 0 0 10px 0;
+    border-bottom: 2px solid $purple;
+}
+
 .todo-app {
     display: flex;
     padding: 0 5%;
