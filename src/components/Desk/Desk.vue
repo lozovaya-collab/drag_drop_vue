@@ -30,10 +30,12 @@
 </template>
 
 <script>
+// импорт компонента Task
 import Task from "../../components/Task/Task";
 
 export default {
   name: "Desk",
+  // входные параметры
   props: ["categories", "tasks", "categoryID", "categoryTitle"],
   components: {
     Task,
@@ -41,11 +43,10 @@ export default {
   data: () => {
     return {
       items: [],
-      desks: [],
-      categotyTasks: [],
       currTask: null,
     };
   },
+  // отслеживание изменений переменной items и входного параметра tasks
   watch: {
     tasks: {
       handler() {
@@ -85,6 +86,7 @@ export default {
         : arr;
     },
   },
+  // инициализация items при отрисовке компонента Desk
   beforeMount() {
     this.items = this.tasks;
   },

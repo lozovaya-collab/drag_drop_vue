@@ -1,7 +1,11 @@
 <template>
   <v-app>
     <h1>DRAG AND DROP PROJECT</h1>
+    <!--Доски с задачами-->
     <div class="todo-app">
+      <!--Компонент Desk, куда передается: 
+      categories - массив с названием категории и id
+      tasks - массив с названием задач, id и id категории -->
       <Desk
         v-for="category in categories"
         :key="category.id"
@@ -14,6 +18,7 @@
 </template>
 
 <script>
+// импорт компонента Desk
 import Desk from "../src/components/Desk/Desk";
 
 export default {
