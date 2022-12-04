@@ -31,7 +31,7 @@
 
 <script>
 // импорт компонента Task
-import Task from "../../components/Task/Task";
+import Task from "@/components/Task/Task";
 
 export default {
   name: "Desk",

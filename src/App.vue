@@ -19,7 +19,7 @@
 
 <script>
 // импорт компонента Desk
-import Desk from "../src/components/Desk/Desk";
+import Desk from "@/components/Desk/Desk";
 
 export default {
   name: "App",
