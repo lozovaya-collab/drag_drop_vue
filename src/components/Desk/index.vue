@@ -4,7 +4,7 @@
     @drop="onDrop($event, categoryID)"
     :style="{
       height: `${
-        82 + (items.filter((x) => x.categoryId === categoryID).length - 1) * 42
+        82 + (items.filter((x) => x.categoryId === categoryID).length - 1) * 42 + 42
       }px`,
     }"
     @dragover.prevent
@@ -15,9 +15,7 @@
     </div>
     <div class="desk_tasks">
       <Task
-        v-for="(task, index) in items.filter(
-          (x) => x.categoryId === categoryID
-        )"
+        v-for="(task, index) in items.filter((x) => x.categoryId === categoryID)"
         :key="task.id"
         :style="{ top: `${index * 40}px` }"
         @dragstart="onDragStart($event, task)"
@@ -25,13 +23,21 @@
         draggable="true"
         v-bind:task="task"
       />
+      <Button
+        class="desk_action-btn"
+        :style="{
+          top: `${items.filter((x) => x.categoryId === categoryID).length * 40}px`,
+        }"
+        >Добавить задачу</Button
+      >
     </div>
   </div>
 </template>
 
 <script>
+import { Button } from "@/components/UI";
 // импорт компонента Task
-import Task from "@/components/Task/Task";
+import Task from "@/components/Task";
 
 export default {
   name: "Desk",
@@ -39,6 +45,7 @@ export default {
   props: ["categories", "tasks", "categoryID", "categoryTitle"],
   components: {
     Task,
+    Button,
   },
   data: () => {
     return {
@@ -93,5 +100,4 @@ export default {
 };
 </script>
 
-<style lang="scss" >
-</style>
+<style lang="scss"></style>

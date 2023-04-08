@@ -9,7 +9,6 @@
     background-color: $purple;
     transition: all 0.3s;
     position: relative;
-
     &_title {
         display: flex;
         justify-content: center;
@@ -17,10 +16,8 @@
         @include title($white);
         margin: 10px 0;
     }
-
     &_tasks {
-        position: absolute;
-
+        position: relative;
         &__item {
             position: absolute;
             cursor: pointer;
@@ -35,10 +32,19 @@
             background-color: $white;
             @include text($black);
             transition: all 0.5s;
-
             & h5 {
                 margin: 0;
             }
+        }
+    }
+    &_action {
+        &-btn {
+            opacity: 0.5;
+            position: absolute;
+            top: 0px;
+            left: 0px;
+            margin: 5px 0;
+            background-color: rgba(0, 0, 0, 0.223) !important;
         }
     }
 }
