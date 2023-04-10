@@ -8,13 +8,14 @@
       v-for="category in categories"
       :key="category.id"
       v-bind:categoryID="category.id"
-      v-bind:categoryTitle="category.title"
+      v-bind:categoryTitle="category.name"
       v-bind:tasks="tasks"
     />
   </div>
 </template>
 
 <script>
+import { mapState } from "vuex";
 import Desk from "@/components/Desk";
 
 export default {
@@ -28,54 +29,45 @@ export default {
         {
           id: 2,
           title: "Вымыть полы",
-          categoryId: 2,
+          categoryId: 3,
         },
         {
           id: 1,
           title: "Сходить к стоматологу",
-          categoryId: 0,
+          categoryId: 1,
         },
         {
           id: 0,
           title: "Написать отчет",
-          categoryId: 1,
+          categoryId: 2,
         },
         {
           id: 3,
           title: "Вынести мусор",
-          categoryId: 2,
+          categoryId: 3,
         },
         {
           id: 4,
           title: "Сходить в магазин",
-          categoryId: 0,
+          categoryId: 1,
         },
         {
           id: 5,
           title: "Купить овощи",
-          categoryId: 0,
+          categoryId: 1,
         },
         {
           id: 6,
           title: "Встреча с родителями",
-          categoryId: 2,
-        },
-      ],
-      categories: [
-        {
-          id: 0,
-          title: "Сделать",
-        },
-        {
-          id: 1,
-          title: "В процессе",
-        },
-        {
-          id: 2,
-          title: "Закончено",
+          categoryId: 3,
         },
       ],
     };
+  },
+  computed: {
+    ...mapState({
+      categories: (state) => state.categories.categories,
+    }),
   },
 };
 </script>

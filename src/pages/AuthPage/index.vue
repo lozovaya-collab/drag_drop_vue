@@ -6,10 +6,10 @@
         src="@/assets/images/mountain.png"
         alt="Icon ToDo App"
       />
-      <FormAuth />
+      <FormAuth v-model:user="user" @update:user="user = $event" />
       <div class="auth-page_form__actions">
         <Button @click="submit">{{ isSignUp ? "ЗАРЕГИСТРИРОВАТЬСЯ" : "ВОЙТИ" }}</Button>
-        <Button v-if="!isSignUp" :type="'text'" @click="isSignUp = true">
+        <Button v-if="!isSignUp" :type="'text'" @click="toSignUpForm">
           Зарегистрироваться
         </Button>
       </div>
@@ -30,9 +30,22 @@ export default {
   data() {
     return {
       isSignUp: false,
+      user: {
+        login: null,
+        password: null,
+      },
     };
   },
   methods: {
+    toSignUpForm() {
+      console.log(this.isSignUp);
+      this.isSignUp = true;
+
+      this.user = {
+        login: null,
+        password: null,
+      };
+    },
     submit() {
       return this.isSignUp ? this.signUp() : this.logIn();
     },

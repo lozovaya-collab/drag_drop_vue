@@ -4,15 +4,4 @@
     justify-content: center;
     gap: 25px;
     width: 100%;
-    &_input {
-        @include text($black);
-        outline: none;
-        border: 2px solid $purple;
-        box-sizing: border-box;
-        padding: 15px 20px;
-        width: 100%;
-        height: 50px;
-        background-color: $white !important;
-        border-radius: 15px;
-    }
 }

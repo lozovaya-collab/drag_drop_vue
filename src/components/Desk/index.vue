@@ -28,29 +28,38 @@
         :style="{
           top: `${items.filter((x) => x.categoryId === categoryID).length * 40}px`,
         }"
+        @click="openCreateTask(categoryID)"
         >Добавить задачу</Button
       >
     </div>
   </div>
+  <CreateTaskPopup v-if="selectedCategory" v-bind:category="selectedCategory" />
 </template>
+s
 
 <script>
-import { Button } from "@/components/UI";
+import { mapMutations } from "vuex";
+
 // импорт компонента Task
 import Task from "@/components/Task";
+import { Button } from "@/components/UI";
+import CreateTaskPopup from "@/components/Task/CreateTaskPopup";
 
 export default {
   name: "Desk",
   // входные параметры
-  props: ["categories", "tasks", "categoryID", "categoryTitle"],
+  props: ["tasks", "categoryID", "categoryTitle"],
   components: {
     Task,
     Button,
+    CreateTaskPopup,
   },
   data: () => {
     return {
       items: [],
       currTask: null,
+      isOpenCreateTask: false,
+      selectedCategory: null,
     };
   },
   // отслеживание изменений переменной items и входного параметра tasks
@@ -66,6 +75,13 @@ export default {
     },
   },
   methods: {
+    ...mapMutations({
+      setIsOpenCreateTask: "tasks/SET_IS_OPEN_CREATE_TASK",
+    }),
+    openCreateTask(category) {
+      this.selectedCategory = category;
+      this.setIsOpenCreateTask(true);
+    },
     onDragStart(event, task) {
       event.dataTransfer.dropEffect = "none";
       event.dataTransfer.effectAllowed = "move";

@@ -22,7 +22,7 @@ export default {
   box-sizing: border-box;
   padding: 5px 10px;
   height: 30px;
-  min-width: 200px;
+  min-width: 130px;
   cursor: pointer;
   border-radius: 5px;
   outline: none;
@@ -30,6 +30,7 @@ export default {
   background-color: $purple;
   color: $white;
   &--text {
+    min-width: 30px;
     background-color: $white;
     color: $purple;
     &:hover {
