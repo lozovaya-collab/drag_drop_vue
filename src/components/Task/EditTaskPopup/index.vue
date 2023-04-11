@@ -1,6 +1,6 @@
 <template>
-  <Popup v-model:dialog="isOpenCreateTask">
-    <template v-slot:title> Создать задачу </template>
+  <Popup v-model:dialog="isOpenEditTask">
+    <template v-slot:title> Редактировать задачу </template>
     <template v-slot:content>
       <ContentPopup v-bind:newTask="task" @update:newTask="task = $event" />
     </template>
@@ -19,7 +19,7 @@ import { Popup, Button } from "@/components/UI";
 
 export default {
   name: "CreateTaskPopup",
-  props: ["category"],
+  props: ["taskId"],
   components: {
     ContentPopup,
     Popup,
@@ -32,15 +32,15 @@ export default {
   },
   computed: {
     ...mapState({
-      isOpenCreateTask: (state) => state.tasks.isOpenCreateTask,
+      isOpenEditTask: (state) => state.tasks.isOpenEditTask,
     }),
   },
   methods: {
     ...mapMutations({
-      setIsOpenCreateTask: "tasks/SET_IS_OPEN_CREATE_TASK",
+      setOpenEditTask: "tasks/SET_IS_OPEN_EDIT_TASK",
     }),
     closePopup() {
-      this.setIsOpenCreateTask(false);
+      this.setOpenEditTask(false);
     },
   },
   mounted() {

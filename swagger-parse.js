@@ -38,7 +38,7 @@ generateApi({
     // Путь для сохранения
     output: path.resolve(process.cwd(), './src/shared/api/swagger'),
     // Адрес до JSON swagger'а
-    url: 'http://localhost:3000/api/static/swagger.json',
+    url: 'http://localhost/api/static/swagger.json',
     // Клиент fetch/axios
     httpClientType: 'axios',
     // Форматирование названий методов. Необязательный конфиг

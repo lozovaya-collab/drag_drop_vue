@@ -16,8 +16,28 @@
         background-color: $white;
         border-radius: 15px;
         gap: 40px;
-        &__icon {
-            width: 60px;
+        &__header {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            &.text {
+                margin: 0;
+            }
+            &.icon {
+                width: 60px;
+            }
+            &.message {
+                font-weight: bold;
+                margin: 15px 0 0 0;
+                @include text(rgb(104, 175, 95))
+            }
+            &.error {
+                font-weight: bold;
+                margin: 15px 0 0 0;
+                @include text(rgb(175, 95, 95))
+            }
         }
         &__actions {
             display: flex;

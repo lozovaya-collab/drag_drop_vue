@@ -12,16 +12,20 @@
       v-bind:tasks="tasks"
     />
   </div>
+  <EditTaskPopup />
 </template>
 
 <script>
 import { mapState } from "vuex";
+
 import Desk from "@/components/Desk";
+import EditTaskPopup from "@/components/Task/EditTaskPopup";
 
 export default {
   name: "HomePage",
   components: {
     Desk,
+    EditTaskPopup,
   },
   data: () => {
     return {

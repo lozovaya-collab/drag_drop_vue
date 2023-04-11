@@ -1,5 +1,11 @@
 <template>
-  <button :class="['button', { 'button--text': type === 'text' }]">
+  <button
+    :class="[
+      'button',
+      { 'button--text': type === 'text' },
+      { 'button--disabled': disabled },
+    ]"
+  >
     <slot></slot>
   </button>
 </template>
@@ -37,5 +43,8 @@ export default {
       text-decoration: underline;
     }
   }
+}
+button:disabled {
+  opacity: 0.5;
 }
 </style>
