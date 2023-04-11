@@ -73,8 +73,7 @@ export default {
       console.log(this.user);
       apiService.users
         .Create({ ...this.user })
-        .then((res) => {
-          console.log(res);
+        .then(() => {
           this.mess = "вы успешно зарегистрировались!";
           setTimeout(() => {
             this.$router.push({ name: "ToDo App" });
@@ -100,17 +99,15 @@ export default {
 
       apiService.login
         .Login(this.user)
-        .then((res) => {
-          console.log(res);
-
+        .then(() => {
           setTimeout(() => {
             this.$router.push({ name: "ToDo App" });
             this.isLoading = false;
             this.mess = null;
           }, 1000);
         })
-        .catch(() => {
-          this.err = "пользователь не найден!";
+        .catch((err) => {
+          this.err = err.message;
 
           setTimeout(() => {
             this.user = {
@@ -119,8 +116,8 @@ export default {
             };
 
             this.err = null;
-          });
-        }, 1000);
+          }, 2000);
+        });
     },
   },
   mounted() {
