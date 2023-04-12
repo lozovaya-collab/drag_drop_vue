@@ -21,9 +21,6 @@
         &__item {
             position: absolute;
             cursor: pointer;
-            display: flex;
-            justify-content: center;
-            align-items: center;
             width: 200px;
             top: 0px;
             height: 30px;
@@ -32,8 +29,42 @@
             background-color: $white;
             @include text($black);
             transition: all 0.5s;
-            & h5 {
-                margin: 0;
+            .task-wrapper {
+                position: relative;
+                width: 200px;
+                height: 100%;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                flex-direction: row;
+                &_name {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    text-align: center;
+                    width: 100px;
+                    margin: 0;
+                }
+                &_container {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    width: 50px;
+                    &__icon {
+                        transition: opacity .2 ease;
+                        height: 20px;
+                        width: 20px;
+                        opacity: 0.5;
+                        &:hover {
+                            opacity: 1;
+                        }
+                    }
+                    &__login {
+                        color: $purple;
+                        font-weight: bold;
+                        font-size: 9px;
+                    }
+                }
             }
         }
     }

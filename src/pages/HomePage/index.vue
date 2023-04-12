@@ -5,73 +5,55 @@
       categories - массив с названием категории и id
       tasks - массив с названием задач, id и id категории -->
     <Desk
-      v-for="category in categories"
-      :key="category.id"
-      v-bind:categoryID="category.id"
-      v-bind:categoryTitle="category.name"
+      v-for="status in statuses"
+      :key="status.id"
+      v-bind:statusId="status.id"
+      v-bind:statusTitle="status.name"
       v-bind:tasks="tasks"
+      @update:tasks="tasks = $event"
+      v-bind:users="users"
     />
   </div>
-  <EditTaskPopup />
 </template>
 
 <script>
-import { mapState } from "vuex";
+import { apiService } from "../../shared/api/swagger/swagger";
 
 import Desk from "@/components/Desk";
-import EditTaskPopup from "@/components/Task/EditTaskPopup";
 
 export default {
   name: "HomePage",
   components: {
     Desk,
-    EditTaskPopup,
   },
   data: () => {
     return {
-      tasks: [
-        {
-          id: 2,
-          title: "Вымыть полы",
-          categoryId: 3,
-        },
+      statuses: [
         {
           id: 1,
-          title: "Сходить к стоматологу",
-          categoryId: 1,
+          name: "сделать",
         },
         {
-          id: 0,
-          title: "Написать отчет",
-          categoryId: 2,
+          id: 2,
+          name: "в процессе",
         },
         {
           id: 3,
-          title: "Вынести мусор",
-          categoryId: 3,
-        },
-        {
-          id: 4,
-          title: "Сходить в магазин",
-          categoryId: 1,
-        },
-        {
-          id: 5,
-          title: "Купить овощи",
-          categoryId: 1,
-        },
-        {
-          id: 6,
-          title: "Встреча с родителями",
-          categoryId: 3,
+          name: "закончено",
         },
       ],
+      tasks: [],
+      users: [],
     };
   },
-  computed: {
-    ...mapState({
-      categories: (state) => state.categories.categories,
-    }),
+  mounted() {
+    apiService.tasks.Get().then((res) => {
+      this.tasks = res.data;
+    });
+
+    apiService.users.Get().then((res) => {
+      this.users = res.data;
+    });
   },
 };
 </script>

@@ -27,8 +27,10 @@ const router = createRouter({
 router.beforeEach(async(to, from, next) => {
 
     try {
-        await apiService.me.Me()
-        next()
+        await apiService.me.Me().then(res => {
+            localStorage.setItem('user', JSON.stringify(res.data))
+        })
+
 
     } catch (err) {
         console.log(err)
@@ -36,7 +38,7 @@ router.beforeEach(async(to, from, next) => {
     }
 
 
-
+    next()
 })
 
 

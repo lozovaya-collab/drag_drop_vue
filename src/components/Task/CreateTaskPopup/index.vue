@@ -6,20 +6,21 @@
     </template>
     <template v-slot:actions>
       <Button :type="'text'" @click="closePopup">ОТМЕНА</Button>
-      <Button @click="closePopup">СОХРАНИТЬ</Button>
+      <Button @click="saveTask">СОХРАНИТЬ</Button>
     </template>
   </Popup>
 </template>
 
 <script>
 import { mapState, mapMutations } from "vuex";
+import { apiService } from "../../../shared/api/swagger/swagger";
 
 import ContentPopup from "../ContentPopup";
 import { Popup, Button } from "@/components/UI";
 
 export default {
   name: "CreateTaskPopup",
-  props: ["category"],
+  props: ["statusId", "tasks"],
   components: {
     ContentPopup,
     Popup,
@@ -42,10 +43,22 @@ export default {
     closePopup() {
       this.setIsOpenCreateTask(false);
     },
+    saveTask() {
+      apiService.tasks.Create(this.task).then(() => {
+        apiService.tasks
+          .Get()
+          .then((res) => {
+            this.$emit("update:tasks", res.data);
+          })
+          .then(() => {
+            this.closePopup();
+          });
+      });
+    },
   },
   mounted() {
     this.task = {
-      category: this.category,
+      status_id: this.statusId,
       title: null,
       description: null,
     };

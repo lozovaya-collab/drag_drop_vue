@@ -1,9 +1,9 @@
 <template>
   <div class="content-task" v-if="newTask">
     <Combobox
-      v-model:selected="category"
-      @update:selected="category = $event"
-      v-bind:list="categories"
+      v-model:selected="statusId"
+      @update:selected="statusId = $event"
+      v-bind:list="statuses"
     />
     <TextInput
       v-model="title"
@@ -20,8 +20,6 @@
 </template>
 
 <script>
-import { mapState } from "vuex";
-
 import { Combobox, TextInput, TextArea } from "@/components/UI";
 
 export default {
@@ -35,21 +33,31 @@ export default {
   },
   data() {
     return {
-      selectedCategory: null,
+      statuses: [
+        {
+          id: 1,
+          name: "сделать",
+        },
+        {
+          id: 2,
+          name: "в процессе",
+        },
+        {
+          id: 3,
+          name: "закончено",
+        },
+      ],
     };
   },
   computed: {
-    ...mapState({
-      categories: (state) => state.categories.categories,
-    }),
-    category: {
+    statusId: {
       get() {
-        return this.newTask.category;
+        return this.newTask.status_id;
       },
       set(value) {
         this.$emit("update:newTask", {
           ...this.newTask,
-          category: value,
+          status_id: value,
         });
       },
     },
