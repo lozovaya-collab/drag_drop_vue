@@ -23,7 +23,8 @@
         :user-login="
           task.author_id === currUser.id
             ? -1
-            : users.find((item) => item.id === task.author_id).login
+            : users.find((item) => item.id === task.author_id) &&
+              users.find((item) => item.id === task.author_id).login
         "
         draggable="true"
         v-bind:task="task"
@@ -47,6 +48,7 @@
     @update:tasks="items = $event"
   />
   <EditTaskPopup
+    :user="currUser.id"
     v-if="selectedTaskId"
     v-bind:tasks="items"
     @update:tasks="items = $event"

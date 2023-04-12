@@ -33,7 +33,7 @@ router.beforeEach(async(to, from, next) => {
 
 
     } catch (err) {
-        console.log(err)
+        console.log("Ошибка:", err.message)
         if (to.name !== "Authorization") router.push('/auth')
     }
 

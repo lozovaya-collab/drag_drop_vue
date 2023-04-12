@@ -156,7 +156,6 @@ export class Api extends HttpClient {
              */
             Login: (data, params = {}) => {
 
-                console.log(data)
                 return this.request(Object.assign({ path: `/login`, method: 'POST', body: data, type: ContentType.Json, format: 'json' }, params))
             },
         };

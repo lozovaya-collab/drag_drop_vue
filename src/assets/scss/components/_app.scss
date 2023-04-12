@@ -3,15 +3,23 @@
     padding: 0;
 }
 
-h1 {
+.header {
+    position: relative;
     display: flex;
     align-items: center;
     justify-content: center;
-    @include title($black);
-    font-size: 25px;
     margin: 20px 0;
     padding: 0 0 10px 0;
     border-bottom: 2px solid $purple;
+    & h1 {
+        @include title($black);
+        font-size: 25px;
+        margin: 0;
+    }
+    &>.button {
+        position: absolute;
+        right: 10px;
+    }
 }
 
 .todo-app {

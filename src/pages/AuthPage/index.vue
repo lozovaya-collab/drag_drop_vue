@@ -7,9 +7,12 @@
           src="@/assets/images/mountain.png"
           alt="Icon ToDo App"
         />
-        <h1 class="auth-page_form__header text">
-          {{ isSignUp ? "Регистрация" : "Вход" }}
-        </h1>
+        <div class="header">
+          <h1 class="auth-page_form__header text">
+            {{ isSignUp ? "Регистрация" : "Вход" }}
+          </h1>
+        </div>
+
         <p :class="['auth-page_form__header', { message: mess }, { error: err }]">
           {{ mess ? mess : err }}
         </p>

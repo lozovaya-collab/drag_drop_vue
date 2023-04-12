@@ -6,7 +6,7 @@
     </template>
     <template v-slot:actions>
       <Button :type="'text'" @click="closePopup">ОТМЕНА</Button>
-      <Button @click="saveTask">СОХРАНИТЬ</Button>
+      <Button @click="saveTask" v-if="task && task.author_id === user">СОХРАНИТЬ</Button>
     </template>
   </Popup>
 </template>
@@ -20,7 +20,7 @@ import { Popup, Button } from "@/components/UI";
 
 export default {
   name: "EditTaskPopup",
-  props: ["taskId", "tasks"],
+  props: ["taskId", "tasks", "user"],
   emits: ["update:taskId"],
   components: {
     ContentPopup,
